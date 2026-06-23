@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nexus Forge App</title>
+</head>
+<body>
 
+<h1>Login Page</h1>
+
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+<button onclick="login()">Login</button>
+
+<h2>Staff Management</h2>
+
+<input type="text" id="staffName" placeholder="Enter staff name">
+<button onclick="addStaff()">Add Staff</button>
+
+<ul id="staffList"></ul>
+
+<script>
+function login() {
+  let user = document.getElementById("username").value;
+  let pass = document.getElementById("password").value;
+
+  if(user && pass){
+    alert("Login Successful");
+  } else {
+    alert("Enter credentials");
+  }
+}
+
+let staff = [];
+
+function addStaff() {
+  let name = document.getElementById("staffName").value;
+  if(name === "") return;
+
+  staff.push(name);
+  displayStaff();
+}
+
+function displayStaff() {
+  let list = document.getElementById("staffList");
+  list.innerHTML = "";
+
+  staff.forEach((s, index) => {
+    list.innerHTML += `<li>${s} 
+    <button onclick="deleteStaff(${index})">Delete</button>
+    </li>`;
+  });
+}
+
+function deleteStaff(index) {
+  staff.splice(index, 1);
+  displayStaff();
+}
+</script>
+
+</body>
+</html>
