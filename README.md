@@ -1,19 +1,15 @@
 # Nexus Forge App
 
-## 📌 What the App Does
-This app helps users manage staff operations with login, dashboard, and data tracking.
+## Features
+- Authentication (Login page)
+- Staff Management System
+- CRUD Operations (Create, Read, Update, Delete)
+- Backend API using Vercel
 
-## 📱 Core Screens
-- Login Page
-- Dashboard
-- Profile Page
-- Admin Panel
-
-## 🛠 Tech Stack
+## Tech Stack
 - HTML
-- Tailwind CSS
 - JavaScript
+- Node.js (Serverless API)
 
-## ▶️ How to Run
-1. Clone the repository
-2. Open index.html in your browser
+## How to Run
+Open index.html in browser
