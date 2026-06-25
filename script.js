@@ -1,33 +1,29 @@
-let staff = [];
+export default async function handler(req, res) {
+  try {
+    const { message } = req.body;
 
-function addStaff() {
-  const name = document.getElementById("name").value;
-  staff.push(name);
-  renderStaff();
-}
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini",
+        messages: [
+          { role: "system", content: "You are a helpful staff assistant." },
+          { role: "user", content: message }
+        ]
+      })
+    });
 
-function deleteStaff(index) {
-  staff.splice(index, 1);
-  renderStaff();
-}
+    const data = await response.json();
 
-function editStaff(index) {
-  const newName = prompt("Enter new name:");
-  if (newName) {
-    staff[index] = newName;
-    renderStaff();
+    res.status(200).json({
+      reply: data.choices[0].message.content
+    });
+
+  } catch (error) {
+    res.status(500).json({ error: "Something went wrong" });
   }
-}
-
-function renderStaff() {
-  const list = document.getElementById("staffList");
-  list.innerHTML = "";
-
-  staff.forEach((s, index) => {
-    const li = document.createElement("li");
-    li.innerHTML = `${s} 
-      <button onclick="deleteStaff(${index})">Delete</button>
-      <button onclick="editStaff(${index})">Edit</button>`;
-    list.appendChild(li);
-  });
 }
