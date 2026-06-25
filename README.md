@@ -1,15 +1,19 @@
-# Nexus Forge App
+# Nexus Forge - Staff AI Assistant
+
+## What it does
+A simple AI-powered staff assistant that answers queries using OpenAI API.
 
 ## Features
-- Authentication (Login page)
-- Staff Management System
-- CRUD Operations (Create, Read, Update, Delete)
-- Backend API using Vercel
+- User input → AI response
+- Real LLM API integration
+- Serverless backend
 
 ## Tech Stack
-- HTML
-- JavaScript
-- Node.js (Serverless API)
+- HTML, JS
+- Vercel Serverless Functions
+- OpenAI API
 
-## How to Run
-Open index.html in browser
+## How to run
+1. Add OPENAI_API_KEY in environment variables
+2. Deploy on Vercel
+3. Open and test
