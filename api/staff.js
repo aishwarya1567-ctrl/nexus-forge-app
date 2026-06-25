@@ -1,19 +1,29 @@
-let staff = [];
+export default async function handler(req, res) {
+  try {
+    const { message } = req.body;
 
-export default function handler(req, res) {
-  if (req.method === "GET") {
-    res.status(200).json(staff);
-  }
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini",
+        messages: [
+          { role: "system", content: "You are a helpful staff assistant." },
+          { role: "user", content: message }
+        ]
+      })
+    });
 
-  if (req.method === "POST") {
-    const { name } = req.body;
-    staff.push(name);
-    res.status(201).json({ message: "Added", staff });
-  }
+    const data = await response.json();
 
-  if (req.method === "DELETE") {
-    const { index } = req.body;
-    staff.splice(index, 1);
-    res.status(200).json({ message: "Deleted", staff });
+    res.status(200).json({
+      reply: data.choices[0].message.content
+    });
+
+  } catch (error) {
+    res.status(500).json({ error: "Something went wrong" });
   }
 }
