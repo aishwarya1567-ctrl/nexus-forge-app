@@ -1,15 +1,10 @@
-async function sendMessage() {
-  const input = document.getElementById("input").value;
-
-  const res = await fetch("/api/staff", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ message: input })
-  });
-
-  const data = await res.json();
-
-  document.getElementById("output").innerText = data.reply;
-}
+messages: [
+  {
+    role: "system",
+    content: "You are a staff assistant. Give short, clear, structured answers."
+  },
+  {
+    role: "user",
+    content: `Staff query: ${message}`
+  }
+]
