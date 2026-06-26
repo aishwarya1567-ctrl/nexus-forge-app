@@ -1,10 +1,35 @@
-messages: [
-  {
-    role: "system",
-    content: "You are a staff assistant. Give short, clear, structured answers."
-  },
-  {
-    role: "user",
-    content: `Staff query: ${message}`
+async function sendMessage() {
+  const inputBox = document.getElementById("input");
+  const outputBox = document.getElementById("output");
+
+  const message = inputBox.value.trim();
+
+  if (!message) {
+    alert("Please enter a question!");
+    return;
   }
-]
+
+  outputBox.innerHTML = "⏳ Thinking...";
+
+  try {
+    const res = await fetch("/api/staff", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message })
+    });
+
+    const data = await res.json();
+
+    outputBox.innerHTML = `
+      <strong>Response:</strong><br>${data.reply}
+    `;
+  } catch (err) {
+    outputBox.innerHTML = "❌ Error connecting to AI";
+  }
+}
+
+function fillExample(text) {
+  document.getElementById("input").value = text;
+}
