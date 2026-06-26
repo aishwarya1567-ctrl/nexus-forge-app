@@ -22,11 +22,14 @@ async function sendMessage() {
 
     const data = await res.json();
 
-    outputBox.innerHTML = `
-      <strong>Response:</strong><br>${data.reply}
-    `;
+    if (data.error) {
+      outputBox.innerHTML = `❌ ${data.error}`;
+    } else {
+      outputBox.innerHTML = `<strong>Response:</strong><br>${data.reply}`;
+    }
+
   } catch (err) {
-    outputBox.innerHTML = "❌ Error connecting to AI";
+    outputBox.innerHTML = "❌ Failed to connect to server";
   }
 }
 
