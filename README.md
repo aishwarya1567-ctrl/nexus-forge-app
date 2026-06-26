@@ -1,27 +1,30 @@
 # Nexus Forge - Staff AI Assistant
 
+## Live Demo
+👉 https://your-app.vercel.app
+
 ## Overview
-This project is an AI-powered staff assistant that helps college staff quickly get answers about attendance, leave policies, exams, and institutional rules.
+An AI-powered staff assistant that helps answer queries about attendance, leave policies, exams, and rules.
 
 ## Features
 - Real-time AI responses
-- Staff-specific query handling
-- Clean and simple UI
+- Error handling for API failures
+- Clean UI with loading states
 
 ## Tech Stack
 - HTML, CSS, JavaScript
 - Vercel Serverless Functions
 - OpenAI API
 
-## How it Works
-User enters a question → Sent to backend → AI processes → Response displayed
+## How it works
+User input → Backend → OpenAI → Response → UI
 
-## Setup Instructions
-1. Add OPENAI_API_KEY in Vercel environment variables
-2. Deploy the project
-3. Open and start asking questions
+## Setup
+1. Add OPENAI_API_KEY in Vercel
+2. Deploy project
+3. Use the app
 
 ## Example Queries
-- What is the leave policy?
+- What is leave policy?
 - Explain attendance rules
-- What are exam guidelines?
+- Exam guidelines?
